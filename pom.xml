@@ -14,6 +14,7 @@
     <description>StartMaven</description>
     <properties>
         <java.version>17</java.version>
+        <checkstlyle.config.location>sun_checks.xml</checkstlyle.config.location>
     </properties>
     <dependencies>
         <dependency>
@@ -35,6 +36,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thomasjensen.checkstyle.addons</groupId>
+            <artifactId>checkstyle-addons</artifactId>
+            <version>7.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -50,6 +61,11 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.1</version>
             </plugin>
         </plugins>
     </build>
