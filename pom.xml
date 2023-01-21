@@ -72,8 +72,8 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <configLocation>${project.basedir}/checkstyle/checkstyle-checker.xml/</configLocation>
-                    <suppressionsLocation>${project.basedir}/checkstyle/config/checkstyle-suppressions.xml</suppressionsLocation>
+                    <configLocation>config/checkstyle/checkstyle-checker.xml/</configLocation>
+                    <suppressionsLocation>${project.basedir}/config/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
                     <consoleOutput>true</consoleOutput>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <inputEncoding>UTF-8</inputEncoding>

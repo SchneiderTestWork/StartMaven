@@ -91,7 +91,7 @@
   <!-- Checks for Headers                                -->
   <!-- See https://checkstyle.org/config_header.html   -->
    <module name="Header">
-     <property name="headerFile" value="checkstyle/config/java.header"/>
+     <property name="headerFile" value="config/checkstyle/java.header"/>
      <property name="fileExtensions" value="java"/>
    </module>
 
@@ -189,7 +189,7 @@
 
     <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
     <module name="SuppressionXpathFilter">
-      <property name="file" value="checkstyle/config/checkstyle-xpath-suppressions.xml"/>
+      <property name="file" value="config/checkstyle/checkstyle-xpath-suppressions.xml"/>
       <property name="optional" value="true"/>
     </module>
 
