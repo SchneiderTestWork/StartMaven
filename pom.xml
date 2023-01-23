@@ -12,9 +12,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>StartMaven</name>
     <description>StartMaven</description>
+
     <properties>
         <java.version>17</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,17 +74,17 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <configLocation>config/checkstyle/checkstyle-checker.xml/</configLocation>
-                    <suppressionsLocation>${project.basedir}/config/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+                    <configLocation>config\checkstyle\checkstyle.xml</configLocation>
+                    <propertyExpansion>config_loc=${basedir}\config\checkstyle</propertyExpansion>
+                    <suppressionsLocation>${project.basedir}\config\checkstyle\checkstyle-suppressions.xml</suppressionsLocation>
                     <consoleOutput>true</consoleOutput>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <inputEncoding>UTF-8</inputEncoding>
                     <outputEncoding>UTF-8</outputEncoding>
                 </configuration>
 
                 <executions>
                     <execution>
-                        <id>check</id>
+                        <id>checkstyle</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
