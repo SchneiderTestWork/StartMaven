@@ -11,5 +11,6 @@ public class StartMavenApplication {
         SpringApplication.run(StartMavenApplication.class, args);
         System.out.println("Hello world!");
         System.out.println("Hello maven!");
+        System.out.println("Hello Sonar!");
     }
 }
