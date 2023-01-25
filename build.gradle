@@ -66,11 +66,11 @@ checkstyle {
 }
 
 checkstyleMain {
-    source ='src/main/java'
+    source = 'src/main/java'
 }
 
 checkstyleTest {
-    source ='src/test/java'
+    source = 'src/test/java'
 }
 
 jacoco {
@@ -95,21 +95,33 @@ test {
     }
 }
 
-//jacocoTestCoverageVerification {
-//    violationRules {
-//        rule {
-//            element = 'CLASS'
-//            limit {
-//                minimum = 1
-//            }
-//            excludes = ['*Test']
-//        }
-//        rule {
-//            limit {
-//                counter = 'LINE'
-//                value = 'COVEREDRATIO'
-//                minimum = 0.25
-//            }
-//        }
-//    }
-//}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.25
+            }
+            excludes = ['*Test']
+        }
+
+        rule {
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.25
+            }
+            excludes = ['*Test']
+        }
+
+        rule {
+            limit {
+                counter = 'CLASS'
+                value = 'MISSEDCOUNT'
+                maximum = 0
+            }
+            excludes = ['*Test']
+        }
+    }
+}
