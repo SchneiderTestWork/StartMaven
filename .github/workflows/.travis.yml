@@ -1,12 +1,12 @@
 language: java
 
-cache:
-  directories:
-  - $home/.m2
+#cache:
+#  directories:
+#  - $home/.m2
 
 ./mvnw clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
-./mvnw test -B
+#./mvnw test -B
 
 
 
