@@ -1,0 +1,127 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'org.sonarqube' version '3.5.0.2730'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter:3.0.1'
+    api 'org.springframework.boot:spring-boot-configuration-processor:3.0.1'
+    api 'org.projectlombok:lombok:1.18.24'
+    api 'org.apache.maven.plugins:maven-checkstyle-plugin:3.2.1'
+    api 'com.puppycrawl.tools:checkstyle:10.6.0'
+    api 'com.thomasjensen.checkstyle.addons:checkstyle-addons:7.0.1'
+    implementation 'org.jacoco:jacoco-maven-plugin:0.8.8'
+    implementation 'org.apache.maven.plugins:maven-surefire-plugin:2.22.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.1'
+}
+
+group = 'com.schneidervs'
+version = '0.0.1-SNAPSHOT'
+description = 'StartMaven'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+tasks.withType(Checkstyle).each {
+    it.group = 'verification'
+}
+
+checkstyle {
+    toolVersion = '10.6.0'
+    ignoreFailures false
+    showViolations true
+    config = resources.text.fromFile('config/checkstyle/checkstyle.xml', 'UTF-8')
+
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+jacoco {
+    reportsDirectory = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        csv.enabled true
+        xml.enabled true
+        html.enabled true
+    }
+    dependsOn test
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestCoverageVerification
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.25
+            }
+            excludes = ['*Test']
+        }
+
+        rule {
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.25
+            }
+            excludes = ['*Test']
+        }
+
+        rule {
+            limit {
+                counter = 'CLASS'
+                value = 'MISSEDCOUNT'
+                maximum = 0
+            }
+            excludes = ['*Test']
+        }
+    }
+}
