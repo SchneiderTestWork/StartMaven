@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StartMavenApplication {
 
 
-   public static void main(final String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(StartMavenApplication.class, args);
         System.out.println("Hello maven!");
     }
