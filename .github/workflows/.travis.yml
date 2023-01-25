@@ -1,0 +1,36 @@
+language: java
+
+#cache:
+#  directories:
+#  - $home/.m2
+
+./mvnw clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+#./mvnw test -B
+
+
+
+# addons:
+
+# sonarcloud:
+#   organization: string
+#   token:
+#     secure: encrypted string
+#   github_token:
+#     secure: encrypted string
+
+# sonarcloud: true
+
+
+
+# coverity_scan:
+#   project:
+#     name: string
+#     version: string
+#     description: string
+#   build_script_url: string
+#   branch_pattern: string
+# coverity_scan: true
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
