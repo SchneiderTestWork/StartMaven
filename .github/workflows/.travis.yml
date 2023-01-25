@@ -2,7 +2,9 @@ language: java
 
 cache:
   directories:
-  - $home/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $home/.m2
 
 #./mvnw clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 #./gradlew assemble
